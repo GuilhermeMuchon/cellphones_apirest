@@ -3,9 +3,11 @@ package com.cellphones.apirest.resources;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,7 +32,17 @@ public class CellphoneResource {
 	}
 	
 	@PostMapping("/cellphone")
-	public Cellphone insertCellphone(@RequestBody Cellphone cellphone) {
+	public Cellphone addCellphone(@RequestBody Cellphone cellphone) {
+		return cellphoneRepository.save(cellphone);
+	}
+	
+	@DeleteMapping("/cellphone")
+	public void deleteCellphone(@RequestBody Cellphone cellphone) {
+		cellphoneRepository.delete(cellphone);
+	}
+	
+	@PutMapping("/cellphone")
+	public Cellphone updateCellphone(@RequestBody Cellphone cellphone) {
 		return cellphoneRepository.save(cellphone);
 	}
 }
